@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTA sign</title>
+    <style>
+        /* === Color Palette ===
+           Azul primario: #1E3A8A
+           Azul secundario: #2563EB
+           Fondo claro:    #F3F4F6
+           Blanco:         #FFFFFF
+           Gris texto:     #374151
+        */
+
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #F3F4F6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1E3A8A, #2563EB);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .form-container {
+            background-color: #FFFFFF;
+            max-width: 450px;
+            margin: 60px auto;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #1E3A8A;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            text-align: left;
+            margin-bottom: 6px;
+            margin-top: 15px;
+        }
+
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #CBD5E1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #374151;
+            background-color: #F9FAFB;
+        }
+
+        button {
+            background-color: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1E3A8A;
+        }
+
+        .popup {
+            display: none;
+            background-color: #10B981;
+            color: white;
+            padding: 15px 25px;
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: fadeInOut 3s ease forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-10px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #6B7280;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #2563EB;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>Binary Upload System</header>
+
+    <div class="form-container">
+        <h2>Upload a Binary File</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="file">Select binary file:</label>
+            <input type="file" id="file" name="file" required>
+
+            <label for="environment">Environment:</label>
+            <select id="environment" name="environment">
+                <option value="dev">Development</option>
+                <option value="prod">Production</option>
+            </select>
+
+            <button type="submit">UPLOAD</button>
+        </form>
+    </div>
+
+    <div id="popup" class="popup">File Successfully Uploaded</div>
+
+    <footer>
+        © 2025 Politécnica de Santa Rosa – <a href="#">Arquitecturas de Software</a>
+    </footer>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const popup = document.getElementById('popup');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    popup.textContent = "File Successfully Uploaded (" + result.status + ")";
+                    popup.style.display = 'block';
+                    setTimeout(() => popup.style.display = 'none', 3000);
+                } else {
+                    alert("Upload failed.");
+                }
+            } catch (error) {
+                console.error("Error uploading file:", error);
+                alert("Error uploading file.");
+            }
+        });
+    </script>
+</body>
+</html>

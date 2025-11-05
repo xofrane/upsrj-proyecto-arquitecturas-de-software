@@ -9,11 +9,12 @@
 # ============================================================
 import sys
 import unittest
-from vars import *
+from src.common.vars import *
 
 sys.path.insert(0, BASE_DIR)
 
-import main
+from src.app import main
+
 
 class TestCryptography(unittest.TestCase):
 
