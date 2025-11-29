@@ -1,0 +1,88 @@
+[
+    {
+        "id": "6e687d5b-0064-4173-8f1f-e8f3255faee8",
+        "filename": "data/binaries/6e687d5b-0064-4173-8f1f-e8f3255faee8_20251121074902.bin",
+        "environment": "dev",
+        "status": "signed",
+        "uploaded_at": "2025-11-21T07:49:02.390854",
+        "signed_file": null
+    },
+    {
+        "id": "d0e2c1c1-32c3-4729-9662-755ab51d5eb8",
+        "filename": "data/binaries/d0e2c1c1-32c3-4729-9662-755ab51d5eb8_20251121074916.bin",
+        "environment": "prod",
+        "status": "approved",
+        "uploaded_at": "2025-11-21T07:49:16.209704",
+        "signed_file": "data/signed/signed_d0e2c1c1-32c3-4729-9662-755ab51d5eb8_20251121074916.bin",
+        "approved_at": "2025-11-25T20:24:04.883110"
+    },
+    {
+        "id": "4ecf70e5-50ba-49f3-8067-792c2665701a",
+        "filename": "data/binaries/4ecf70e5-50ba-49f3-8067-792c2665701a_20251125191204.bin",
+        "environment": "dev",
+        "status": "signed",
+        "uploaded_at": "2025-11-25T19:12:04.881558",
+        "signed_file": null
+    },
+    {
+        "id": "c635007c-9bc8-4230-8f97-4f362b4ea938",
+        "filename": "data/binaries/c635007c-9bc8-4230-8f97-4f362b4ea938_20251125191206.bin",
+        "environment": "dev",
+        "status": "signed",
+        "uploaded_at": "2025-11-25T19:12:06.235809",
+        "signed_file": null
+    },
+    {
+        "id": "90bb5f9e-ba38-480d-8238-c4325084debe",
+        "filename": "data/binaries/90bb5f9e-ba38-480d-8238-c4325084debe_20251125194047.bin",
+        "environment": "dev",
+        "status": "signed",
+        "uploaded_at": "2025-11-25T19:40:47.731134",
+        "signed_file": null
+    },
+    {
+        "id": "453827f2-8fef-4c51-84d0-0c0b86fa4881",
+        "filename": "data/binaries/453827f2-8fef-4c51-84d0-0c0b86fa4881_20251125194131.bin",
+        "environment": "prod",
+        "status": "approved",
+        "uploaded_at": "2025-11-25T19:41:31.561110",
+        "signed_file": "data/signed/signed_453827f2-8fef-4c51-84d0-0c0b86fa4881_20251125194131.bin",
+        "approved_at": "2025-11-25T20:24:11.833335"
+    },
+    {
+        "id": "8786fad1-4221-45c0-8d99-c356b56e8193",
+        "filename": "data/binaries/8786fad1-4221-45c0-8d99-c356b56e8193_20251125202434.bin",
+        "environment": "prod",
+        "status": "approved",
+        "uploaded_at": "2025-11-25T20:24:35.000386",
+        "signed_file": "data/signed/signed_8786fad1-4221-45c0-8d99-c356b56e8193_20251125202434.bin",
+        "approved_at": "2025-11-25T21:24:10.805112"
+    },
+    {
+        "id": "b18eab4f-5d53-41c7-a949-39ecf3609824",
+        "filename": "data/binaries/b18eab4f-5d53-41c7-a949-39ecf3609824_20251125202439.bin",
+        "environment": "prod",
+        "status": "approved",
+        "uploaded_at": "2025-11-25T20:24:39.979018",
+        "signed_file": "data/signed/signed_b18eab4f-5d53-41c7-a949-39ecf3609824_20251125202439.bin",
+        "approved_at": "2025-11-25T21:24:09.102731"
+    },
+    {
+        "id": "e9913d7c-ee9c-4de4-8ff9-f519ca4ada9a",
+        "filename": "data/binaries/e9913d7c-ee9c-4de4-8ff9-f519ca4ada9a_20251125202734.bin",
+        "environment": "prod",
+        "status": "approved",
+        "uploaded_at": "2025-11-25T20:27:34.756148",
+        "signed_file": "data/signed/signed_e9913d7c-ee9c-4de4-8ff9-f519ca4ada9a_20251125202734.bin",
+        "approved_at": "2025-11-25T21:24:06.799107"
+    },
+    {
+        "id": "821f54e7-a5db-4b9f-aedc-7d955bb4b593",
+        "filename": "data/binaries/821f54e7-a5db-4b9f-aedc-7d955bb4b593_20251125212234.bin",
+        "environment": "prod",
+        "status": "approved",
+        "uploaded_at": "2025-11-25T21:22:34.433555",
+        "signed_file": "data/signed/signed_821f54e7-a5db-4b9f-aedc-7d955bb4b593_20251125212234.bin",
+        "approved_at": "2025-11-25T21:23:47.272202"
+    }
+]

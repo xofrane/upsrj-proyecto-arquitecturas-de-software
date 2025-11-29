@@ -1,62 +1,52 @@
-import os
 import json
-from datetime import datetime
-from typing import Dict, Any, List, Optional
+import os
 
-class JsonRepository(object):
+class JsonRepository:
 
-    def __init__(self, json_path: str = "database.json"):
-        self.json_path = json_path
-        self.__ensure_database()
+    def __init__(self, file_path="database.json"):
+        self.file_path = file_path
+        # asegurar archivo existe y es lista
+        if not os.path.exists(self.file_path):
+            with open(self.file_path, "w") as f:
+                json.dump([], f, indent=4)
 
-    def __ensure_database(self) -> None:
-        directory = os.path.dirname(self.json_path)
-        if not os.path.exists(directory):
-            os.makedirs(directory)
+    def load(self):
+        with open(self.file_path, "r") as f:
+            try:
+                data = json.load(f)
+                if not isinstance(data, list):
+                    return []
+                return data
+            except json.JSONDecodeError:
+                return []
 
-        if not os.path.exists(self.json_path):
-            with open(self.json_path, "w", encoding="utf-8") as db_file:
-                json.dump([], db_file, indent=4)
+    def save(self, data):
+        with open(self.file_path, "w") as f:
+            json.dump(data, f, indent=4)
 
-    def __load_data(self) -> List[Dict[str, Any]]:
-        with open(self.json_path, "r", encoding="utf-8") as db_file:
-            return json.load(db_file)
+    def all(self):
+        return self.load()
 
-    def __save_data(self, data: List[Dict[str, Any]]) -> None:
-        with open(self.json_path, "w", encoding="utf-8") as db_file:
-            json.dump(data, db_file, indent=4, ensure_ascii=False)
+    def add_record(self, data: dict):
+        records = self.load()
+        records.append(data)
+        self.save(records)
 
-    def add_record(self, record: Dict[str, Any]) -> None:
-        data = self.__load_data()
-        record["timestamp"] = datetime.now().isoformat()
-        data.append(record)
-        self.__save_data(data)
+    def update_record(self, file_id: str, updates: dict):
+        records = self.load()
+        updated = False
 
-    def get_record(self, file_id: str) -> Optional[Dict[str, Any]]:
-        data = self.__load_data()
-        for entry in data:
-            if entry.get("file_id") == file_id:
-                return entry
-        return None
-
-    def update_record(self, file_id: str, updates: Dict[str, Any]) -> bool:
-        data = self.__load_data()
-        for entry in data:
-            if entry.get("file_id") == file_id:
+        for entry in records:
+            # compatibilidad con 'id' o 'file_id'
+            if entry.get("id") == file_id or entry.get("file_id") == file_id:
                 entry.update(updates)
-                self.__save_data(data)
-                return True
-        return False
+                # normalizar key 'id'
+                if "file_id" in entry and "id" not in entry:
+                    entry["id"] = entry.pop("file_id")
+                updated = True
+                break
 
-    def list_records(self) -> List[Dict[str, Any]]:
-        return self.__load_data()
+        if updated:
+            self.save(records)
 
-    def delete_record(self, file_id: str) -> bool:
-        data = self.__load_data()
-        new_data = [entry for entry in data if entry.get("file_id") != file_id]
-
-        if len(new_data) != len(data):
-            self.__save_data(new_data)
-            return True
-        return False
-
+        return updated
